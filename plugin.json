@@ -1,0 +1,23 @@
+{
+  "slug": "MyPlugin",
+  "name": "MyPlugin",
+  "version": "1.0.0",
+  "license": "GPL-3.0-or-later",
+  "brand": "MyBrand",
+  "author": "Me",
+  "authorEmail": "",
+  "authorUrl": "",
+  "pluginUrl": "",
+  "manualUrl": "",
+  "sourceUrl": "",
+  "donateUrl": "",
+  "changelogUrl": "",
+  "modules": [
+    {
+      "slug": "MyModule",
+      "name": "MyModule",
+      "description": "",
+      "tags": []
+    }
+  ]
+}
