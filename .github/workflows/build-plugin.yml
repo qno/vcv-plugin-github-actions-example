@@ -38,7 +38,7 @@ jobs:
           ls -lisah /home/build/rack-plugin-toolchain
           cd /home/build/rack-plugin-toolchain
           cat Makefile
-          make plugin-build${{ matrix.platform }} PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
+          make plugin-build-${{ matrix.platform }} PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
