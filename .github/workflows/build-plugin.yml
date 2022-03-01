@@ -12,7 +12,9 @@ jobs:
   build:
     name: ${{ matrix.platform }}
     runs-on: ubuntu-latest
-    container: ghcr.io/qno/rack-plugin-toolchain:v2
+    container:
+      image: ghcr.io/qno/rack-plugin-toolchain:v2
+      options: --user root
     strategy:
       matrix:
         platform: [linux, mac, win]
