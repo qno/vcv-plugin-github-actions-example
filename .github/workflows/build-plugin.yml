@@ -19,7 +19,7 @@ jobs:
       matrix:
         platform: [linux, mac, win]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: Modify plugin version
@@ -34,7 +34,8 @@ jobs:
         run: |
           pwd
           ls -lisah
-          cat Makefile
+          env
+          ls -lisah /home
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
