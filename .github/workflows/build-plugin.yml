@@ -4,6 +4,10 @@ on: [push, pull_request]
 env:
   rack-sdk-version: 2.1.0
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build:
     name: ${{ matrix.platform }}
