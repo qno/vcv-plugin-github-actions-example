@@ -35,7 +35,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: plugin-build
+          path: /home/build/rack-plugin-toolchain/plugin-build
           name: ${{ matrix.platform }}
 
   publish:
