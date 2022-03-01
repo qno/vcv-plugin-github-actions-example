@@ -32,13 +32,9 @@ jobs:
           cat <<< `jq --arg VERSION "$pluginversion-$gitrev" '.version=$VERSION' plugin.json` > plugin.json
       - name: Build plugin
         run: |
-          pwd
-          ls -lisah
-          env
-          ls -lisah /home/build/rack-plugin-toolchain
-          cd /home/build/rack-plugin-toolchain
-          cat Makefile
-          make plugin-build-${{ matrix.platform }} PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
+          export PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
+          pushd /home/build/rack-plugin-toolchain
+          make plugin-build-${{ matrix.platform }}
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
