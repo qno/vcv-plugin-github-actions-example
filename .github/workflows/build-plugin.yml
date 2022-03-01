@@ -35,8 +35,8 @@ jobs:
           pwd
           ls -lisah
           env
-          ls -lisah /home/build
-          cd /home/build
+          ls -lisah /home/build/rack-plugin-toolchain
+          cd /home/build/rack-plugin-toolchain
           cat Makefile
           make plugin-build${{ matrix.platform }} PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
       - name: Upload artifact
