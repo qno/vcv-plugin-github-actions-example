@@ -4,10 +4,6 @@ on: [push, pull_request]
 env:
   rack-sdk-version: 2.1.0
 
-defaults:
-  run:
-    shell: bash
-
 jobs:
   build:
     name: ${{ matrix.platform }}
@@ -35,11 +31,14 @@ jobs:
           pwd
           ls -lisah
           env
-          ls -lisah /home
+          ls -lisah /home/build
+          cd /home/build
+          cat Makefile
+          make plugin-build${{ matrix.platform }} PLUGIN_DIR=${{ env.GITHUB_WORKSPACE }}
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          path: dist
+          path: plugin-build
           name: ${{ matrix.platform }}
 
   publish:
