@@ -54,8 +54,8 @@ jobs:
       - name: Check if plugin version matches tag
         run: |
           pluginversion=`jq -r '.version' plugin.json`
-          if [ "v$pluginversion" != "$GITHUB_REF_NAME" ]; then
-            echo "Plugin version from plugin.json 'v$pluginversion' doesn't match with tag version '$GITHUB_REF_NAME'"
+          if [ "v$pluginversion" != "${{ env.GITHUB_REF_NAME }}" ]; then
+            echo "Plugin version from plugin.json 'v$pluginversion' doesn't match with tag version '${{ env.GITHUB_REF_NAME }}'"
             exit 1
           fi
       - name: Create Release
@@ -66,7 +66,7 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
           body: |
-            $GITHUB_REPOSITORY_NAME VCV Rack Plugin $GITHUB_REF_NAME
+            ${{ env.GITHUB_REPOSITORY_NAME }} VCV Rack Plugin ${{ env.GITHUB_REF_NAME }}
           draft: false
           prerelease: false
       - uses: actions/download-artifact@v2
