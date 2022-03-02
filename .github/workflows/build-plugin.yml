@@ -22,7 +22,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: $GITHUB_SHA
+          key: ${{ env.GITHUB_SHA }}
       - run: |
          gitrev=`git rev-parse --short HEAD`
          pluginversion=`jq -r '.version' plugin.json`
@@ -34,7 +34,7 @@ jobs:
     needs: modify-plugin-version
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/qno/rack-plugin-toolchain:v2
+      image: ghcr.io/qno/rack-plugin-toolchain-win-linux:v2
       options: --user root
     strategy:
       matrix:
@@ -47,7 +47,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: $GITHUB_SHA
+          key: ${{ env.GITHUB_SHA }}
       - name: Build plugin
         run: |
           export PLUGIN_DIR=$GITHUB_WORKSPACE
@@ -71,7 +71,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: $GITHUB_SHA
+          key: ${{ env.GITHUB_SHA }}
       - name: Get Rack-SDK
         run: |
           pushd $HOME
