@@ -20,7 +20,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}-${{ github.run_id }}
       - run: |
           gitrev=`git rev-parse --short HEAD`
           pluginversion=`jq -r '.version' plugin.json`
@@ -47,7 +47,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}-${{ github.run_id }}
       - name: Build plugin
         run: |
           export PLUGIN_DIR=$GITHUB_WORKSPACE
@@ -71,7 +71,7 @@ jobs:
         id: plugin-version-cache
         with:
           path: plugin.json
-          key: ${{ github.sha }}
+          key: ${{ github.sha }}-${{ github.run_id }}
       - name: Get Rack-SDK
         run: |
           pushd $HOME
