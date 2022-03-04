@@ -14,4 +14,4 @@ ___
 5. To create a Github Release that contains the built plugin for all platforms you need to create and push a tag, e.g. like this:
    * `git tag v2.0.9 -m "create v2.0.9"`
    * `git push origin --tags`
-   * **Note:** Make sure that your tag version number is the same as the version in the [plugin.json](https://github.com/qno/vcv-plugin-github-actions-example/blob/main/plugin.json#L4) and the tag starts with v (it is a convention), otherwise the the publish step will be canceled.
+   * **Note:** Make sure that your tag version number is the same as the version in the [plugin.json](https://github.com/qno/vcv-plugin-github-actions-example/blob/main/plugin.json#L4) and the tag starts with `v` (it is a convention), otherwise the the publish step will be canceled.
