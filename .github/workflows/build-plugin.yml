@@ -97,7 +97,7 @@ jobs:
     needs:  [build, build-mac]
     steps:
       - uses: actions/checkout@v3
-      - uses: FranzDiebold/github-env-vars-action@v2.7.0
+      - uses: FranzDiebold/github-env-vars-action@v2
       - name: Check if plugin version matches tag
         run: |
           pluginversion=`jq -r '.version' plugin.json`
