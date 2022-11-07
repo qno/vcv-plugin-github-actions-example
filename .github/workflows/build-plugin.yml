@@ -109,7 +109,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref }}
+          name: Release ${{ env.CI_REF_NAME }}
           body: |
             ${{ env.CI_REPOSITORY_NAME }} VCV Rack Plugin ${{ env.CI_REF_NAME }}
           draft: false
