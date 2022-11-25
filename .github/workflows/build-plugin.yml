@@ -2,7 +2,7 @@ name: Build VCV Rack Plugin
 on: [push, pull_request]
 
 env:
-  rack-sdk-version: 2.1.2
+  rack-sdk-version: 2.2.0
   rack-plugin-toolchain-dir: /home/build/rack-plugin-toolchain
 
 defaults:
@@ -75,7 +75,7 @@ jobs:
       - name: Get Rack-SDK
         run: |
           pushd $HOME
-          curl -o Rack-SDK.zip https://vcvrack.com/downloads/Rack-SDK-${{ env.rack-sdk-version }}-mac.zip
+          curl -o Rack-SDK.zip https://vcvrack.com/downloads/Rack-SDK-${{ env.rack-sdk-version }}-mac-x64.zip
           unzip Rack-SDK.zip
       - name: Build plugin
         run: |
