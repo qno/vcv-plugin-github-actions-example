@@ -2,7 +2,7 @@ name: Build VCV Rack Plugin
 on: [push, pull_request]
 
 env:
-  rack-sdk-version: 2.2.0
+  rack-sdk-version: 2.2.1
   rack-plugin-toolchain-dir: /home/build/rack-plugin-toolchain
 
 defaults:
@@ -38,7 +38,7 @@ jobs:
       options: --user root
     strategy:
       matrix:
-        platform: [win, linux]
+        platform: [win-x64, linux-x64]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -52,7 +52,7 @@ jobs:
         run: |
           export PLUGIN_DIR=$GITHUB_WORKSPACE
           pushd ${{ env.rack-plugin-toolchain-dir }}
-          make plugin-build-${{ matrix.platform }}-x64
+          make plugin-build-${{ matrix.platform }}
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
