@@ -63,6 +63,10 @@ jobs:
     name: mac
     needs: modify-plugin-version
     runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [x64, arm64]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -75,18 +79,21 @@ jobs:
       - name: Get Rack-SDK
         run: |
           pushd $HOME
-          curl -o Rack-SDK.zip https://vcvrack.com/downloads/Rack-SDK-${{ env.rack-sdk-version }}-mac-x64.zip
+          curl -o Rack-SDK.zip https://vcvrack.com/downloads/Rack-SDK-${{ env.rack-sdk-version }}-mac-${{ matrix.platform }}.zip
           unzip Rack-SDK.zip
       - name: Build plugin
         run: |
+          CROSS_COMPILE_TARGET_x64=x86_64-apple-darwin
+          CROSS_COMPILE_TARGET_arm64=arm64-apple-darwin
           export RACK_DIR=$HOME/Rack-SDK
-          make -j dep
-          make -j dist
+          export CROSS_COMPILE=$CROSS_COMPILE_TARGET_${{ matrix.platform }}
+          make dep
+          make dist
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          path: dist
-          name: mac
+          path: dist/*.vcvplugin
+          name: mac-${{ matrix.platform }}
 
   publish:
     name: Publish plugin
